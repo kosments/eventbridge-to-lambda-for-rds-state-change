@@ -2,7 +2,7 @@ AWSTemplateFormatVersion: "2010-09-09"
 Description: eventbridge-to-lambda-for-rds-state-change
 
 Parameters:
-  RestoredRdsInstaceIdentifer:
+  RestoredRdsInstaceIdentifier:
     Type: String
     Default: "sample-rds-001"
   TargetLambdaName:
@@ -53,7 +53,7 @@ Resources:
   EventRule: 
     Type: AWS::Events::Rule
     Properties: 
-      Description: "EventRule"
+      Name: "eventbridge-to-lambda-for-rds-state-change"
       EventPattern: 
         source: 
           - "aws.rds"
@@ -62,8 +62,8 @@ Resources:
         detail: 
           EventID: 
             - "RDS-EVENT-0043"
-          SourceIdentifer:
-            - !Ref RestoredRdsInstaceIdentifer
+          SourceIdentifier:
+            - !Ref RestoredRdsInstaceIdentifier
       State: "ENABLED"
       Targets: 
         - Arn: !GetAtt Lambda.Arn 
